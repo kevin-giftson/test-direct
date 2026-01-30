@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kevin Giftson I | AI Developer Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/all.min.css">
+    
+    <style>
+        :root {
+            --primary-bg: #050505;
+            --secondary-bg: #111111;
+            --accent: #0071e3;
+            --text-main: #ffffff;
+            --text-dim: #a1a1a6;
+            --card-border: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: var(--primary-bg);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(5, 5, 5, 0.8);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            color: var(--text-main);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: var(--text-dim);
+            margin-left: 2rem;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .nav-links li a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section with Canvas */
+        .scroll-section {
+            position: relative;
+            height: 400vh; /* Controls animation speed */
+            background-color: var(--primary-bg);
+        }
+
+        #scroll-canvas {
+            position: sticky;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            display: block;
+            z-index: 1;
+        }
+
+        .hero-overlay {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            z-index: 2;
+            pointer-events: none;
+            background: radial-gradient(circle, rgba(5,5,5,0) 0%, rgba(5,5,5,0.4) 100%);
+        }
+
+        .hero-overlay h1 {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .hero-overlay p {
+            font-size: 1.2rem;
+            color: var(--text-dim);
+            max-width: 800px;
+        }
+
+        .btn-group {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+            pointer-events: auto;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+        }
+
+        .btn-secondary {
+            border: 1px solid var(--text-dim);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 113, 227, 0.4);
+        }
+
+        /* Standard Content Sections */
+        section.content {
+            padding: 100px 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        /* Grid Layouts */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--secondary-bg);
+            border: 1px solid var(--card-border);
+            padding: 2.5rem;
+            border-radius: 16px;
+            transition: 0.4s;
+        }
+
+        .card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            border-left: 1px solid var(--card-border);
+            padding-left: 2rem;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.35rem;
+            top: 8px;
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        .date {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 0.8rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #000;
+            padding: 4rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--card-border);
+        }
+
+        .social-links a {
+            color: var(--text-dim);
+            font-size: 1.5rem;
+            margin: 0 1rem;
+            transition: 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 768px) {
+            .hero-overlay h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-container">
+            <div class="logo">KGI.AI</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="scroll-section" id="home">
+        <canvas id="scroll-canvas"></canvas>
+        <div class="hero-overlay">
+            <h1>Kevin Giftson I</h1>
+            <p>AI Developer | Machine Learning | Healthcare AI | Automation</p>
+            <div class="btn-group">
+                <a href="#projects" class="btn btn-primary">View Projects</a>
+                <a href="#contact" class="btn btn-secondary">Contact Me</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="content">
+        <h2>About Me</h2>
+        <div class="card" style="text-align: center;">
+            <p>Results-driven AI Developer with hands-on experience in artificial intelligence, machine learning, and embedded systems. Skilled in Python, data analysis, and AI-powered application development, with a strong focus on real-world problem solving. Experienced in healthcare AI, workflow automation, and integrating AI into production-ready systems.</p>
+        </div>
+    </section>
+
+    <section id="skills" class="content">
+        <h2>Tech Stack</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>AI & Machine Learning</h3>
+                <ul style="list-style: none; color: var(--text-dim);">
+                    <li>• Medical Image Analysis</li>
+                    <li>• Model Fine-tuning (Hugging Face)</li>
+                    <li>• Gemini 2.5 Flash Integration</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3>Backend & DevOps</h3>
+                <ul style="list-style: none; color: var(--text-dim);">
+                    <li>• Python (FastAPI, Flask)</li>
+                    <li>• n8n Automation</li>
+                    <li>• Docker & MongoDB</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="content">
+        <h2>Experience</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <span class="date">FEB 2025 – PRESENT</span>
+                <h3>AI Developer – Nizcare, Trichy</h3>
+                <p style="color: var(--text-dim);">Built medical image analyzers using FastAPI and integrated Gemini 2.5 Flash for diagnostic support.</p>
+            </div>
+            <div class="timeline-item">
+                <span class="date">JUN 2024 – JAN 2025</span>
+                <h3>AI Developer – Kiwistron, Trichy</h3>
+                <p style="color: var(--text-dim);">Developed AI-powered solutions and machine learning models for real-world applications.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="content">
+        <h2>Let's Connect</h2>
+        <div class="card" style="text-align: center;">
+            <p>kevingiftson5@gmail.com</p>
+            <p>+91 77081 39259</p>
+            <div class="social-links" style="margin-top: 1.5rem;">
+                <a href="https://github.com/kevin-giftson"><i class="fab fa-github"></i></a>
+                <a href="https://linkedin.com/in/kevin-giftson"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p style="color: var(--text-dim); font-size: 0.8rem;">&copy; 2026 Kevin Giftson I. Built with passion for AI and real-world impact.</p>
+    </footer>
+
+    <script>
+        const frameCount = 200;
+        const imagePath = index => `images/ezgif-frame-${String(index).padStart(3, "0")}.jpg`;
+
+        const canvas = document.getElementById("scroll-canvas");
+        const ctx = canvas.getContext("2d");
+        const images = [];
+        let imagesLoaded = 0;
+        let currentFrame = 0;
+
+        function resizeCanvas() {
+            const dpr = window.devicePixelRatio || 1;
+            canvas.width = window.innerWidth * dpr;
+            canvas.height = window.innerHeight * dpr;
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+            if(images[currentFrame]) drawImage(images[currentFrame]);
+        }
+
+        for (let i = 1; i <= frameCount; i++) {
+            const img = new Image();
+            img.src = imagePath(i);
+            img.onload = () => {
+                imagesLoaded++;
+                if (imagesLoaded === frameCount) {
+                    resizeCanvas();
+                    requestAnimationFrame(animate);
+                }
+            };
+            images.push(img);
+        }
+
+        function drawImage(img) {
+            const dpr = window.devicePixelRatio || 1;
+            const canvasWidth = canvas.width / dpr;
+            const canvasHeight = canvas.height / dpr;
+            const imgRatio = img.width / img.height;
+            const canvasRatio = canvasWidth / canvasHeight;
+
+            let drawWidth, drawHeight;
+            if (imgRatio > canvasRatio) {
+                drawHeight = canvasHeight;
+                drawWidth = imgRatio * drawHeight;
+            } else {
+                drawWidth = canvasWidth;
+                drawHeight = drawWidth / imgRatio;
+            }
+
+            const x = (canvasWidth - drawWidth) / 2;
+            const y = (canvasHeight - drawHeight) / 2;
+            ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+            ctx.drawImage(img, x, y, drawWidth, drawHeight);
+        }
+
+        function animate() {
+            const section = document.querySelector(".scroll-section");
+            const scrollTop = window.scrollY;
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.offsetHeight - window.innerHeight;
+            
+            const progress = Math.min(Math.max((scrollTop - sectionTop) / sectionHeight, 0), 1);
+            const frameIndex = Math.floor(progress * (frameCount - 1));
+
+            if (frameIndex !== currentFrame && images[frameIndex]) {
+                currentFrame = frameIndex;
+                drawImage(images[currentFrame]);
+            }
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener("resize", resizeCanvas);
+    </script>
+</body>
+</html>
